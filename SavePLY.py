@@ -15,11 +15,11 @@ def SavePLY(X,Y,Z,filename):
     s[7]="property list uint8 int32 vertex_indices"
     s[8]="end_header"
 
-	#the header for "object.ply" is written
-    for i in range(len(s)):
-            f.write(s[i]+"\n")
 
-	#Creating a .ply file from the coordinates in the list X,Y,Z respectively	
+    for i in range(len(s)):
+            f.write(s[i]+"\n") # writing defined values into generated .ply file
+
+	#Creating a .ply file from the coordinates in the list X,Y,Z respectively
     for i in range(len(X)):
         f.write(str(X[i])+" ")
         f.write(str(Y[i])+" ")
