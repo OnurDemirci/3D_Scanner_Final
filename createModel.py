@@ -2,23 +2,29 @@ import cv2
 import numpy as np
 import math
 import SavePLY # importing necessary libraries and scripts
+import crop
+
+#cropped = crop.crop("processed/1.jpg")
 
 def create_model(output_name):
     print("Creating model...")
-    centerLine = 656 # defining distance between object and camera
+    centerLine = 750 # defining distance between object and camera
     X = []
     Y = []
     Z = []
-    theta = 35 # defining laser angle
-    step = 5.806 # defining step motor angle per step
+    theta = 36 # defining laser angle
+    step = .9 # defining step motor angle per step
     step_rad = math.radians(step) # we will use radians for calculation
     theta_rad = math.radians(theta)
-    for i in range(62):
-        path = "processed/"+str(i+1)+".png" # processed images' path
+    for i in range(400):
+        path = "processed/"+str(i)+".jpg" # processed images' path
         image = cv2.imread(path)
-        image = image[15:-15, 125:-15] # for get rid of white frames of processed images, I'll crop image a little bit
-        print("Generating model of",str(i+1)+".png")
-        sensitivity = 110 #
+        image = image[300:-105, 125:-15] # for get rid of white frames of processed images, I'll crop image a little bit
+#        cv2.namedWindow('image',cv2.WINDOW_NORMAL)
+#        cv2.resizeWindow("image", 600,600)
+#        cv2.imshow("image",image)
+        print("Generating model of",str(i)+".jpg")
+        sensitivity = 250 #
         lower_white = np.array([0,0,255-sensitivity]) #
         upper_white = np.array([255,sensitivity,255]) # defining white color
         hsv_frame = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -37,3 +43,4 @@ def create_model(output_name):
 
     print("Generated",len(X),"vertices")
     SavePLY.SavePLY(X,Y,Z,output_name) # saving output as a .ply file
+

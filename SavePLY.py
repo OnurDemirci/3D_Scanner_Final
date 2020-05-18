@@ -4,7 +4,7 @@ def SavePLY(X,Y,Z,filename):
     s=[]
     for i in range(9):
         s.append("0")
-	#the header of the ply file is defined
+    #the header of the ply file is defined
     s[0]="ply"
     s[1]="format ascii 1.0"
     s[2]="element vertex "+ str(len(X))
@@ -19,9 +19,10 @@ def SavePLY(X,Y,Z,filename):
     for i in range(len(s)):
             f.write(s[i]+"\n") # writing defined values into generated .ply file
 
-	#Creating a .ply file from the coordinates in the list X,Y,Z respectively
+    #Creating a .ply file from the coordinates in the list X,Y,Z respectively
     for i in range(len(X)):
         f.write(str(X[i])+" ")
         f.write(str(Y[i])+" ")
         f.write(str(Z[i])+"\n")
+    print("Model created.")
     f.close()
