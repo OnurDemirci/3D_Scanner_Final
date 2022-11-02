@@ -1,5 +1,5 @@
 # 3D_Scanner_Final
- Generating 3d ojects from images using cv2
+ Generating 3d objects from images using cv2
 
 Github repo in progress 🛠️
 
